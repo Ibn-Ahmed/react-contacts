@@ -1,0 +1,13 @@
+.contact-body {
+    
+}
+.contact-list {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: azure;
+    border-radius: 10px;
+    height: fit-content;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}

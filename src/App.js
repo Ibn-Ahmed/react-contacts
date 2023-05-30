@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import Contacts from './Contacts'
+import ContactsForm from './ContactsForm'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const allContacts = localStorage.getItem('contacts')
+console.log(allContacts)
+  const [contacts,setContacts] = useState([allContacts])
+
+
+const getData = (data)=>{
+   console.log(data.name)
+    setContacts([...contacts,{name:data.name,number:data.number,location:data.location}])
 }
 
-export default App;
+useEffect(()=>{
+  localStorage.setItem("contacts",JSON.stringify(contacts))
+},[contacts])
+  return (
+    <div>
+      <h1>Contact Info</h1>
+       <Contacts contacts = {contacts}/>
+       <ContactsForm send={getData}/>
+    </div>
+  )
+}
+
+export default App
